@@ -6,7 +6,7 @@ complete -c run0 -s g -l group -d "Switches to the specified group instead of ro
 complete -c run0 -l no-ask-password -d "Do not query the user for authentication for privileged operations"
 complete -c run0 -l machine -d "Execute operation on a local container" -xa "(machinectl list --no-legend --no-pager | string split -f 1 ' ')"
 complete -c run0 -l unit -d "Run under the specified unit name" -x
-complete -c run0 -l property -d "Sets a property on the service unit that is created" -x
+complete -c run0 -l property -d "Sets a property on the service unit that is created" -xa "(__fish_systemd_properties --section service)"
 complete -c run0 -l description -d "Description for unit" -x
 complete -c run0 -l slice -d "Make the new .service unit part of the specified slice, instead of user.slice." -xa "(__fish_systemd_slices)"
 complete -c run0 -l slice-inherit -d "Make the new .service unit part of the slice the run0 itself has been invoked in"
