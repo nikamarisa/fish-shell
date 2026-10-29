@@ -21,16 +21,6 @@ end
 
 set -l types services sockets mounts service_paths targets automounts timers
 
-function __fish_systemd_properties
-    # We need to call the main systemd binary (the thing that is run as PID1).
-    # Unfortunately, it's usually not in $PATH.
-    if test -f /usr/lib/systemd/systemd
-        /usr/lib/systemd/systemd --dump-configuration-items | string replace -rf '(.+)=(.+)$' '$1\t$2'
-    else if test -f /lib/systemd/systemd # Debian has not merged /lib and /usr/lib
-        /lib/systemd/systemd --dump-configuration-items | string replace -rf '(.+)=(.+)$' '$1\t$2'
-    end
-end
-
 # All systemctl commands
 complete -f -c systemctl -n "not __fish_seen_subcommand_from $commands" -a "$commands"
 
